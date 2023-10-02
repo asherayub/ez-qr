@@ -3,7 +3,7 @@ import QRCode from "easyqrcodejs";
 import { States } from "./States";
 
 const GenerateQRCode = () => {
-  const { url, logo, backgroundImg } = useContext(States);
+  const { url, logo, backgroundImg, addColors } = useContext(States);
   const qrcodeRef = useRef(null);
 
   const removeOldCanvas = () => {
@@ -20,15 +20,17 @@ const GenerateQRCode = () => {
       height: 226,
       text: url,
       logo: logo,
-      subTitle: 'hello',
+      subTitle: "hello",
       backgroundImage: backgroundImg,
       backgroundImageAlpha: 0.55,
+      PO: addColors.color1,
+      PI: addColors.color2,
     };
 
     // Create new QRCode Object
     new QRCode(qrcodeRef.current, options);
     removeOldCanvas();
-  }, [url, logo, backgroundImg]);
+  }, [url, logo, backgroundImg, addColors]);
 
   return (
     <div

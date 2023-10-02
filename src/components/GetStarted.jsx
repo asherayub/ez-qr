@@ -7,7 +7,8 @@ import OptionsButton from "./OptionsButton";
 const GetStarted = () => {
   const [toggle, setToggle] = useState(false);
   const [optionToggle, setOptionToggle] = useState(false);
-  const { url, setLogo, setBackgroundImg } = useContext(States);
+  const { url, setLogo, setBackgroundImg, addColors, setAddColors } =
+    useContext(States);
 
   return (
     <section id="start" className="pt-24 mb-24 w-full h-screen">
@@ -36,8 +37,8 @@ const GetStarted = () => {
         )}
       </div>
       {optionToggle && (
-        <div className="options ml-[42em] mb-8">
-          <div className="options__all w-max max-w-[400px] min-w-[260px] flex flex-col sm:flex-row sm:justify-start  justify-center bg-primaryLight p-2 rounded-lg">
+        <div className="options ml-[22em] mb-8">
+          <div className="options__all w-max max-w-[400px] min-w-[260px] flex flex-wrap flex-col sm:flex-row sm:justify-start  justify-center bg-primaryLight p-2 rounded-lg">
             <OptionsButton
               wrapper={"logo"}
               id={"logo-upload"}
@@ -60,6 +61,40 @@ const GetStarted = () => {
                   setBackgroundImg(URL.createObjectURL(selectedFile));
               }}
             />
+            <div className="add__colors">
+              <label htmlFor="add_colors">Add Colors: </label>
+              <input
+                type="checkbox"
+                name="add_colors"
+                id="add_colors"
+                value={addColors.isChecked}
+                onChange={(e) =>
+                  setAddColors({ ...addColors, isChecked: e.target.checked })
+                }
+              />
+              {addColors.isChecked && (
+                <>
+                  <input
+                    type="color"
+                    name="color1"
+                    id="color1"
+                    value={addColors.color1}
+                    onChange={(e) => {
+                      setAddColors({ ...addColors, color1: e.target.value });
+                    }}
+                  />
+                  <input
+                    type="color"
+                    name="color2"
+                    id="color2"
+                    value={addColors.color2}
+                    onChange={(e) => {
+                      setAddColors({ ...addColors, color2: e.target.value });
+                    }}
+                  />
+                </>
+              )}
+            </div>
           </div>
         </div>
       )}
