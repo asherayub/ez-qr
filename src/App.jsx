@@ -2,7 +2,7 @@ import Hero from "./components/Hero";
 import Header from "./components/Header";
 import GetStarted from "./components/GetStarted";
 import HowItWorks from "./components/HowItWorks";
-import FAQ from "./components/FAQ";
+import Faq from "./components/FAQ";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Hero />
         <GetStarted />
         <HowItWorks />
-        <FAQ />
+        <Faq />
       </main>
     </div>
   );

@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 const States = createContext(null);
 
@@ -19,9 +19,6 @@ const ContextProvider = ({ children }) => {
     setURL(e.target.value);
   };
 
-  useEffect(() => {
-    console.log(addColors );
-  }, [addColors]);
   return (
     <States.Provider
       value={{

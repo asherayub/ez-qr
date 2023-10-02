@@ -1,6 +1,6 @@
 import AccordionItem from "./Accordion";
 
-const FAQ = () => {
+const Faq = () => {
   return (
     <section className="faq mb-20">
       <h1 className="text-5xl sm:text-9xl mb-8  font-bold">FAQ</h1>
@@ -29,4 +29,4 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+export default Faq;

@@ -1,4 +1,3 @@
-
 const OptionsButton = ({ wrapper, id, text, handleOnChange, deleteIcon }) => {
   return (
     <div
@@ -20,7 +19,7 @@ const OptionsButton = ({ wrapper, id, text, handleOnChange, deleteIcon }) => {
           handleOnChange(e);
         }}
       />
-     {deleteIcon}
+      {deleteIcon}
     </div>
   );
 };
