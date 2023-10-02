@@ -3,11 +3,13 @@ import GenerateQRCode from "./GenerateQRCode";
 import { States } from "./States";
 import { useContext, useState } from "react";
 import OptionsButton from "./OptionsButton";
+import AddColorsOptBtn from "./AddColorsOptBtn";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 const GetStarted = () => {
   const [toggle, setToggle] = useState(false);
   const [optionToggle, setOptionToggle] = useState(false);
-  const { url, setLogo, setBackgroundImg, addColors, setAddColors } =
+  const { url, logo, setLogo, setBackgroundImg, backgroundImg } =
     useContext(States);
 
   return (
@@ -43,6 +45,14 @@ const GetStarted = () => {
               wrapper={"logo"}
               id={"logo-upload"}
               text={"Add Logo"}
+              deleteIcon={
+                logo && (
+                  <AiOutlineCloseCircle
+                    className="text-3xl p-1 w-10 h-10 rounded-lg bg-accent text-primary cursor-pointer"
+                    onClick={() => setLogo("")}
+                  />
+                )
+              }
               handleOnChange={(e) => {
                 // Handle file upload logic here
                 const selectedFile = e.target.files[0];
@@ -53,48 +63,35 @@ const GetStarted = () => {
             <OptionsButton
               wrapper={"background"}
               id={"bg-upload"}
-              text={"Add Background"}
+              text={backgroundImg ? `Remove Background` : "Add Background"}
+              deleteIcon={
+                backgroundImg && (
+                  <AiOutlineCloseCircle
+                    className="text-3xl p-1 w-10 h-10 rounded-lg bg-accent text-primary cursor-pointer"
+                    onClick={() => setBackgroundImg("")}
+                  />
+                )
+              }
               handleOnChange={(e) => {
+                // if backgroundImg is not empty, remove it
                 // Handle file upload logic here
                 const selectedFile = e.target.files[0];
                 if (selectedFile)
                   setBackgroundImg(URL.createObjectURL(selectedFile));
               }}
             />
-            <div className="add__colors">
-              <label htmlFor="add_colors">Add Colors: </label>
-              <input
-                type="checkbox"
-                name="add_colors"
-                id="add_colors"
-                value={addColors.isChecked}
-                onChange={(e) =>
-                  setAddColors({ ...addColors, isChecked: e.target.checked })
-                }
-              />
-              {addColors.isChecked && (
-                <>
-                  <input
-                    type="color"
-                    name="color1"
-                    id="color1"
-                    value={addColors.color1}
-                    onChange={(e) => {
-                      setAddColors({ ...addColors, color1: e.target.value });
-                    }}
-                  />
-                  <input
-                    type="color"
-                    name="color2"
-                    id="color2"
-                    value={addColors.color2}
-                    onChange={(e) => {
-                      setAddColors({ ...addColors, color2: e.target.value });
-                    }}
-                  />
-                </>
-              )}
-            </div>
+            <AddColorsOptBtn
+              labelText={"Add Global Pos Colors"}
+              isCheckedNo={"isChecked1"}
+              colorBox1={"color1"}
+              colorBox2={"color2"}
+            />
+            <AddColorsOptBtn
+              labelText={"Add Alignment Colors"}
+              isCheckedNo={"isChecked2"}
+              colorBox1={"color3"}
+              colorBox2={"color4"}
+            />
           </div>
         </div>
       )}

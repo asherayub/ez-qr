@@ -7,9 +7,12 @@ const ContextProvider = ({ children }) => {
   const [logo, setLogo] = useState("");
   const [backgroundImg, setBackgroundImg] = useState("");
   const [addColors, setAddColors] = useState({
-    isChecked: false,
+    isChecked1: false,
     color1: "#000000",
     color2: "#761f1f",
+    isChecked2: false,
+    color3: "#ffffff",
+    color4: "#000000",
   });
 
   const handleURL = (e) => {

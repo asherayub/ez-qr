@@ -1,6 +1,9 @@
-const OptionsButton = ({wrapper, id, text, handleOnChange }) => {
+
+const OptionsButton = ({ wrapper, id, text, handleOnChange, deleteIcon }) => {
   return (
-    <div className={`${wrapper}__img relative  p-4`}>
+    <div
+      className={`${wrapper}__img relative flex justify-center items-center gap-2  p-4`}
+    >
       <label
         htmlFor={id}
         className="cursor-pointer bg-accent text-primary
@@ -17,6 +20,7 @@ const OptionsButton = ({wrapper, id, text, handleOnChange }) => {
           handleOnChange(e);
         }}
       />
+     {deleteIcon}
     </div>
   );
 };
