@@ -6,10 +6,12 @@ const Hero = () => {
     }
   };
   return (
-    <div className="hero w-full h-screen grid grid-cols-1 grid-rows-2 sm:grid-cols-3 sm:grid-rows-1 place-items-center">
+    <div className="hero w-full sm:h-screen grid grid-cols-1 grid-rows-2 sm:grid-cols-3 sm:grid-rows-1 place-items-center">
       <div className="hero__left col-span-2 mr-auto">
         <div className="tagline">
-          <h1 className="text-5xl sm:text-9xl  font-bold">EZQR</h1>
+          <h1 className="text-5xl sm:text-9xl  font-bold">
+            EZ<span className="text-accent">QR</span>
+          </h1>
           <h2 className="text-xs sm:text-2xl font-bold tracking-widest ">
             QR Code Generator
           </h2>

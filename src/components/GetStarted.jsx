@@ -13,7 +13,7 @@ const GetStarted = () => {
     useContext(States);
 
   return (
-    <section id="start" className="pt-24 mb-24 w-full h-screen">
+    <section id="start" className="pt-24 mb-24 w-full">
       <h1 className="text-5xl sm:text-9xl  font-bold">Get Started</h1>
       <h2 className="mt-4 text-xs sm:text-2xl tracking-wide">
         Type the url in the input below and click Submit
@@ -30,71 +30,76 @@ const GetStarted = () => {
           Generate
         </button>
         {toggle && (
-          <button
-            onClick={() => setOptionToggle(!optionToggle)}
-            className="bg-accent text-primary px-4 py-2 rounded-lg font-bold"
-          >
-            Options
-          </button>
+          <div className="relative">
+            <button
+              onClick={() => setOptionToggle(!optionToggle)}
+              className="bg-accent text-primary px-4 py-2 rounded-lg font-bold"
+            >
+              Options
+            </button>
+            {optionToggle && (
+              <div className="options absolute top-40 sm:top-36 left-0 sm:left-44 sm:right-0 right-32 bottom-0 z-50 flex justify-center items-center   mb-8">
+                <div className="options__all w-max max-w-[400px] min-w-[260px] flex flex-wrap flex-col sm:flex-row sm:justify-start  justify-center bg-primaryLight p-2 rounded-lg">
+                  <OptionsButton
+                    wrapper={"logo"}
+                    id={"logo-upload"}
+                    text={"Add Logo"}
+                    deleteIcon={
+                      logo && (
+                        <AiOutlineCloseCircle
+                          className="text-3xl p-1 w-10 h-10 rounded-lg bg-accent text-primary cursor-pointer"
+                          onClick={() => setLogo("")}
+                        />
+                      )
+                    }
+                    handleOnChange={(e) => {
+                      // Handle file upload logic here
+                      const selectedFile = e.target.files[0];
+                      if (selectedFile)
+                        setLogo(URL.createObjectURL(selectedFile));
+                    }}
+                  />
+
+                  <OptionsButton
+                    wrapper={"background"}
+                    id={"bg-upload"}
+                    text={
+                      backgroundImg ? `Remove Background` : "Add Background"
+                    }
+                    deleteIcon={
+                      backgroundImg && (
+                        <AiOutlineCloseCircle
+                          className="text-3xl p-1 w-10 h-10 rounded-lg bg-accent text-primary cursor-pointer"
+                          onClick={() => setBackgroundImg("")}
+                        />
+                      )
+                    }
+                    handleOnChange={(e) => {
+                      // if backgroundImg is not empty, remove it
+                      // Handle file upload logic here
+                      const selectedFile = e.target.files[0];
+                      if (selectedFile)
+                        setBackgroundImg(URL.createObjectURL(selectedFile));
+                    }}
+                  />
+                  <AddColorsOptBtn
+                    labelText={"Add Global Pos Colors"}
+                    isCheckedNo={"isChecked1"}
+                    colorBox1={"color1"}
+                    colorBox2={"color2"}
+                  />
+                  <AddColorsOptBtn
+                    labelText={"Add Alignment Colors"}
+                    isCheckedNo={"isChecked2"}
+                    colorBox1={"color3"}
+                    colorBox2={"color4"}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
         )}
       </div>
-      {optionToggle && (
-        <div className="options ml-[22em] mb-8">
-          <div className="options__all w-max max-w-[400px] min-w-[260px] flex flex-wrap flex-col sm:flex-row sm:justify-start  justify-center bg-primaryLight p-2 rounded-lg">
-            <OptionsButton
-              wrapper={"logo"}
-              id={"logo-upload"}
-              text={"Add Logo"}
-              deleteIcon={
-                logo && (
-                  <AiOutlineCloseCircle
-                    className="text-3xl p-1 w-10 h-10 rounded-lg bg-accent text-primary cursor-pointer"
-                    onClick={() => setLogo("")}
-                  />
-                )
-              }
-              handleOnChange={(e) => {
-                // Handle file upload logic here
-                const selectedFile = e.target.files[0];
-                if (selectedFile) setLogo(URL.createObjectURL(selectedFile));
-              }}
-            />
-
-            <OptionsButton
-              wrapper={"background"}
-              id={"bg-upload"}
-              text={backgroundImg ? `Remove Background` : "Add Background"}
-              deleteIcon={
-                backgroundImg && (
-                  <AiOutlineCloseCircle
-                    className="text-3xl p-1 w-10 h-10 rounded-lg bg-accent text-primary cursor-pointer"
-                    onClick={() => setBackgroundImg("")}
-                  />
-                )
-              }
-              handleOnChange={(e) => {
-                // if backgroundImg is not empty, remove it
-                // Handle file upload logic here
-                const selectedFile = e.target.files[0];
-                if (selectedFile)
-                  setBackgroundImg(URL.createObjectURL(selectedFile));
-              }}
-            />
-            <AddColorsOptBtn
-              labelText={"Add Global Pos Colors"}
-              isCheckedNo={"isChecked1"}
-              colorBox1={"color1"}
-              colorBox2={"color2"}
-            />
-            <AddColorsOptBtn
-              labelText={"Add Alignment Colors"}
-              isCheckedNo={"isChecked2"}
-              colorBox1={"color3"}
-              colorBox2={"color4"}
-            />
-          </div>
-        </div>
-      )}
 
       {toggle && url.length > 12 && <GenerateQRCode />}
     </section>
