@@ -1,7 +1,7 @@
 import Input from "./Input";
 import GenerateQRCode from "./GenerateQRCode";
 import { States } from "./States";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import OptionsButton from "./OptionsButton";
 import AddColorsOptBtn from "./AddColorsOptBtn";
 import { AiOutlineCloseCircle } from "react-icons/ai";

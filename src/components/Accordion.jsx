@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
+import { motion, AnimatePresence } from "framer-motion";
 
 const AccordionItem = ({ title, content }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,11 +18,18 @@ const AccordionItem = ({ title, content }) => {
         <p className="font-semibold text-sm sm:text-2xl">{title}</p>
         <span>{isOpen ? <AiOutlineArrowUp /> : <AiOutlineArrowDown />}</span>
       </div>
-      {isOpen && (
-        <div className="p-3 py-6 bg-primary">
-          <p className="text-sm sm:text-xl mt-2 ">{content}</p>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="bg-primary"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+          >
+            <p className="text-sm sm:text-xl mt-2 p-5">{content}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
