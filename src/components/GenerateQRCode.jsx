@@ -39,7 +39,7 @@ const GenerateQRCode = () => {
       ref={qrcodeRef}
     >
       <button
-        className="bg-accent text-primary px-4 py-2 rounded-lg font-bold my-4"
+        className="bg-accent  hover:bg-accent/70 transition duration-300 ease-in-out  text-lg   sm:text-2xl text-primary px-4 py-2 rounded-lg font-bold my-4"
         onClick={() => {
           let fileName = "EZQRCode";
           qrCode.current.download(fileName);

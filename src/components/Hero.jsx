@@ -26,8 +26,8 @@ const Hero = () => {
         {/* link to get Started */}
 
         <button
-          className=" bg-accent text-primary
-            font-bold py-2 px-4 rounded-md hover:bg-accent/70 transition duration-300 ease-in-out mt-8"
+          className=" bg-accent text-primary text-lg mx-auto block sm:inline sm:text-2xl mt-8
+            font-bold py-3 px-6 rounded-md hover:bg-accent/70 transition duration-300 ease-in-out "
           onClick={() => handleClickScroll("start")}
         >
           Get Started
@@ -36,7 +36,7 @@ const Hero = () => {
       <div className="hero__right">
         <img
           className="w-20 sm:w-auto min-w-[220px]"
-          src="../logo.png"
+          src="../../assets/logo.png"
           alt=""
         />
       </div>

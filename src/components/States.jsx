@@ -3,15 +3,15 @@ import { createContext, useState } from "react";
 const States = createContext(null);
 
 const ContextProvider = ({ children }) => {
-  const [url, setURL] = useState("");
+  const [url, setURL] = useState("https://");
   const [logo, setLogo] = useState("");
   const [backgroundImg, setBackgroundImg] = useState("");
   const [addColors, setAddColors] = useState({
     isChecked1: false,
     color1: "#000000",
-    color2: "#761f1f",
+    color2: "#000000",
     isChecked2: false,
-    color3: "#ffffff",
+    color3: "#000000",
     color4: "#000000",
   });
 

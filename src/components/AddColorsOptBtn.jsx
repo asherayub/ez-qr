@@ -1,29 +1,45 @@
 import { useContext } from "react";
 import { States } from "./States";
 
-const AddColorsOptBtn = ({labelText, isCheckedNo, colorBox1, colorBox2 }) => {
+const AddColorsOptBtn = ({
+  labelText,
+  htmlfor,
+  isCheckedNo,
+  colorBox1,
+  colorBox2,
+}) => {
   const { addColors, setAddColors } = useContext(States);
   return (
-    <div className="add__colors">
-      <label htmlFor="add_colors">{labelText}: </label>
+    <div className="add__colors flex flex-wrap justify-between items-center">
+      <label htmlFor={htmlfor}>{labelText}: </label>
       <input
+        className="p-3"
         type="checkbox"
         name={isCheckedNo}
-        id="add_colors"
+        id={htmlfor}
+        checked={addColors[isCheckedNo]}
         value={addColors[isCheckedNo]}
         onChange={(e) => {
-            const { name, checked } = e.target
-            setAddColors({ ...addColors, [name]: checked })
-        }
-        }
+          const { name, checked } = e.target;
+          if (checked) {
+            setAddColors({ ...addColors, [name]: checked });
+          } else {
+            setAddColors({
+              ...addColors,
+              [colorBox1]: "#000000",
+              [colorBox2]: "#000000",
+              [name]: checked,
+            });
+          }
+        }}
       />
       {addColors[isCheckedNo] && (
-        <>
+        <div className="my-1 flex gap-2">
           <input
             type="color"
             name={colorBox1}
             id={colorBox1}
-            value={addColors.color1}
+            value={addColors[colorBox1]}
             onChange={(e) => {
               const { name, value } = e.target;
               setAddColors({ ...addColors, [name]: value });
@@ -33,13 +49,13 @@ const AddColorsOptBtn = ({labelText, isCheckedNo, colorBox1, colorBox2 }) => {
             type="color"
             name={colorBox2}
             id={colorBox2}
-            value={addColors.color2}
+            value={addColors[colorBox2]}
             onChange={(e) => {
               const { name, value } = e.target;
               setAddColors({ ...addColors, [name]: value });
             }}
           />
-        </>
+        </div>
       )}
     </div>
   );
